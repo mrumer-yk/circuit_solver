@@ -15,22 +15,22 @@ def check_requirements():
     print("🔍 Checking requirements...")
     
     required_packages = [
-        'streamlit',
-        'google-generativeai',
-        'pillow',
-        'opencv-python',
-        'pydantic',
-        'python-dotenv'
+        ('streamlit', 'streamlit'),
+        ('google-generativeai', 'google.generativeai'),
+        ('pillow', 'PIL'),
+        ('opencv-python', 'cv2'),
+        ('pydantic', 'pydantic'),
+        ('python-dotenv', 'dotenv')
     ]
     
     missing_packages = []
-    for package in required_packages:
+    for package_name, import_name in required_packages:
         try:
-            __import__(package.replace('-', '_'))
-            print(f"✅ {package}")
+            __import__(import_name)
+            print(f"✅ {package_name}")
         except ImportError:
-            missing_packages.append(package)
-            print(f"❌ {package}")
+            missing_packages.append(package_name)
+            print(f"❌ {package_name}")
     
     if missing_packages:
         print(f"\n🚨 Missing packages: {', '.join(missing_packages)}")
